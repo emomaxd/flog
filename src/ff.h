@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 #include <sstream>
 #include <bitset>
@@ -41,7 +43,7 @@ namespace ff {
     };
 
     /* Parses string to determine integer format specification */
-    IntegerFormatSpec parse_integer_format_spec(const std::string& format_spec) {
+    static IntegerFormatSpec parse_integer_format_spec(const std::string& format_spec) {
         if (format_spec == "x") return IntegerFormatSpec::HexadecimalLower;
         if (format_spec == "X") return IntegerFormatSpec::HexadecimalUpper;
         if (format_spec == "o") return IntegerFormatSpec::Octal;
@@ -50,7 +52,7 @@ namespace ff {
     }
 
     /* Parses string to determine float format specification */
-    FloatFormat parse_float_format_spec(const std::string& format_spec) {
+    static FloatFormat parse_float_format_spec(const std::string& format_spec) {
         if (format_spec == "s") return {FloatFormat::Type::Scientific};
         if (format_spec == "b") return {FloatFormat::Type::Binary};
         if (format_spec[0] == '.') {
@@ -61,7 +63,7 @@ namespace ff {
     }
 
     /* Counts the number of placeholders in the format string */
-    size_t count_placeholders(const std::string& formatStr) {
+    static size_t count_placeholders(const std::string& formatStr) {
         size_t count = 0;
         for (size_t i = 0; i < formatStr.size(); ++i) {
             if (formatStr[i] == '{') {
