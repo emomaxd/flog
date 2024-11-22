@@ -1,21 +1,19 @@
-
 # flog - C++ Logging Library
-====================================================================
 
-**flog** is a simple and efficient C++ logging library that supports logging to both console and files. 
-It includes features such as log rotation, asynchronous logging, and colored output based on log levels.
+**flog** is a simple and efficient C++ logging library that supports basic logging functionalities, see below.
 
 Features:
 ---------
-- **Log Rotation**: Automatically rotates log files when they exceed a specified size.
-- **Async Logging**: Can offload logging to a thread pool for non-blocking log writes.
-- **Color-Coded Output**: Different log levels are colored for easier reading in the console.
 - **Log Levels**: TRACE, DEBUG, INFO, WARN, ERROR, CRITICAL.
+- **Color-Coded Output**: Different log levels are colored for easier reading in the console.
+- **Async Logging**: Can offload logging to a thread pool for non-blocking log writes.
 - **Custom File Logging**: Ability to configure log file path and log rotation parameters.
+- **Log Rotation**: Automatically rotates log files when they exceed a specified size.
 
 Usage
 -----
-To use the flog logging system, you need to include the "flog.h" header file and follow the steps below.
+To use the flog logging system, you need to **include the "flog.h" header file** and follow the steps below.
+-----
 
 0. **Use default logger**
     ```cpp
@@ -35,16 +33,8 @@ To use the flog logging system, you need to include the "flog.h" header file and
    auto logger = flog::LoggerManager::createLogger("MyLogger", std::cout);
    ```
 
-2. Log Rotation:
-   The log files will rotate automatically when the size of the log file exceeds the configured limit. The system keeps a specified number of backup files.
-
-   Example:
-   ```cpp
-   logger->enableFileLogging("log.txt", 1024 * 1024); // Rotate after 1MB
-   ```
-
-3. **Log Messages**:
-   To log messages, you can use the `log` method with the appropriate log level. Log levels include TRACE, DEBUG, INFO, WARN, ERROR, and CRITICAL. You can pass any number of arguments to be formatted using ff::format (not yet implemented in this version).
+2. **Log Messages**:
+   Instead of using the default logger you can use the logger you have created.
 
    Example:
    ```cpp
@@ -52,7 +42,7 @@ To use the flog logging system, you need to include the "flog.h" header file and
     logger.debug("Debug level log with number: {}", 42);
    ```
 
-4. Asynchronous Logging:
+3. **Asynchronous Logging**:
    You can enable asynchronous logging by setting up a thread pool. Async logging offloads log writes to background threads for non-blocking performance.
 
    Example:
@@ -62,7 +52,15 @@ To use the flog logging system, you need to include the "flog.h" header file and
     logger->enableAsync(pool);
    ```
 
-5. Flushing Logs:
+4. **Log Rotation**:
+   The log files will rotate automatically when the size of the log file exceeds the configured limit. The system keeps a specified number of backup files.
+
+   Example:
+   ```cpp
+   logger->enableFileLogging("log.txt", 1024 * 1024); //(Optional) Rotate after 1MB
+   ```
+
+5. **Flushing Logs**:
    You can flush the log output (both console and file) manually using the `flush` method.
 
    Example:
@@ -86,7 +84,7 @@ int main() {
     logger.enableAsync(pool);
     
     // Enable file logging
-    logger.enableFileLogging("log.txt", 5 * 1024 * 1024); //(Optional) File rotating - 5MB
+    logger.enableFileLogging("log.txt", 5 * 1024 * 1024); //(Optional) File rotating - rotate after 5MB
     
     // Set periodic flush (every 3 seconds)
     logger.setPeriodicFlush(std::chrono::seconds(3));
