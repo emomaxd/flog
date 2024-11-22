@@ -1,6 +1,6 @@
 # flog - C++ Logging Library
 
-**flog** is a simple and efficient C++ logging library that supports basic logging functionalities, see below.
+**flog** is a simple and efficient C++ logging library that supports basic logging and formatting with the help of [ff](https://github.com/emomaxd/ff) library, see below.
 
 Features:
 ---------
@@ -12,8 +12,7 @@ Features:
 
 Usage
 -----
-To use the flog logging system, you need to **include the "flog.h" header file** and follow the steps below.
------
+To use the flog logging system, you need to include the "flog.h" header file and follow the steps below.
 
 0. **Use default logger**
     ```cpp
